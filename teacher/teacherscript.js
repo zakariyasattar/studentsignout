@@ -9,7 +9,7 @@ firebase.auth().signInWithPopup(provider).then(function (result) {
   var user = result.user;
 
   uid = user.uid;
-  if (uid === "qaOIHfkRUrVlMVKxkfDukSm6k5l1"){
+  if (uid === "qaOIHfkRUrVlMVKxkfDukSm6k5l1" || uid === "oIe1Ej0XetZycy6rq9zFY6euz6q2"){
     document.getElementById('html').style.display = "initial";
   }
 

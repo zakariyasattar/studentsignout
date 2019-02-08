@@ -242,7 +242,7 @@ function submit() {
 
     	swal("Yes!", "You have successfully signed out on " + date + " at" + time + "!", "success");
       appendStudent(nameValue);
-
+      
       update();
 
 			firebaseRef.push(nameValue + ":"  + timeStamp + ";" + reason + "?" + uid[uid.indexOf(nameValue + "") + 1]);

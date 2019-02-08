@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html id="html">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Student Sign-Out</title>
+	<link href="https://fonts.googleapis.com/css?family=Roboto|Ubuntu" rel="stylesheet">
+	<link href="teacher.css" rel="stylesheet" type="text/css" />
+	<link rel="shortcut icon" href="../assets/favicon.ico">
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+	<span><a href="/"><img id="logo" src="../assets/nwlogo.png" ></img></a></span>
+	<span><center><h1 style="color: #6a6ee2; font-family: 'Roboto', sans-serif;">Teacher Dashboard - Key<div class="options"><a href="teacher.html"><button id="key">Key</button></a> <a href="data.html"><button id="data">Data</button></a></div><h1><center></span>
+</head>
+
+<body onload="getTimeAbsent();createKey();bootstrap();">
+
+	<!--Collect Resources for Firebase-->
+	<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-firestore.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-database.js"></script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+
+
+
+	<script src="https://www.gstatic.com/firebasejs/5.5.2/firebase.js"></script>
+	<script>
+		// Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBtrJDxY3wRXMXS3L-vG-NW87mgS0a_fjg",
+    authDomain: "student-sign-out-ef1b3.firebaseapp.com",
+    databaseURL: "https://student-sign-out-ef1b3.firebaseio.com",
+    projectId: "student-sign-out-ef1b3",
+    storageBucket: "student-sign-out-ef1b3.appspot.com",
+    messagingSenderId: "1023120418734"
+  };
+  firebase.initializeApp(config);
+	</script>
+	<script>
+	if (window.location.href  === "https://studentsignout.netlify.com/teacher/teacher.html") {
+		window.history.pushState("object or string", "Title", "https://studentsignout.netlify.com/teacher/teacher.html?24FgH6382HHKWG928hhWjksHAzM9sjAs&857");
+	}
+	</script>
+
+	<script src="teacherscript.js"></script>
+
+
+	<section id="landing">
+		<div class="key" style="background: white;">
+			<div class="tab">
+			  <button class="tablinks" id="default" onclick="tabSwitcher(event, 'geo1')"style="border-right: 1px solid black">Geometry (Period 1)</button>
+			  <button class="tablinks" onclick="tabSwitcher(event, 'geo2')"style="border-right: 1px solid black">Geometry (Period 2)</button>
+				<button class="tablinks" onclick="tabSwitcher(event, 'ps5')" style="border-right: 1px solid black">Probability & Statistics (Period 5)</button>
+				<button class="tablinks" onclick="tabSwitcher(event, 'alg6')" style="border-right: 1px solid black">Algebra 1 Extensions (Period 6)</button>
+				<button class="tablinks" onclick="tabSwitcher(event, 'ps7')" style="border-right: 1px solid black">Probability and Statistics (Period 7)</button>
+			</div>
+
+			<div id="alg6" class="tabcontent">
+			  <h3>Algebra 1 Extensions (Period 6)</h3>
+			</div>
+			<div id="geo1" class="tabcontent">
+			  <h3>Geometry (Period 1)</h3>
+				<div class="content"></div>
+			</div>
+			<div id="geo2" class="tabcontent">
+			  <h3>Geometry (Period 2)</h3>
+			</div>
+
+			<div id="ps5" class="tabcontent">
+			  <h3>Probability and Statistics (Period 5)</h3>
+			</div>
+
+			<div id="ps7" class="tabcontent">
+			  <h3>Probability and Statistics (Period 7)</h3>
+			</div>
+		</div>
+	</section>
+
+	<script>
+	document.getElementById("default").click()
+	</script>
+</html>

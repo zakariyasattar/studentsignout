@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html id="html">
+
+  <head>
+  	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width">
+  	<title>Student Sign-Out</title>
+  	<link href="https://fonts.googleapis.com/css?family=Roboto|Ubuntu" rel="stylesheet">
+  	<link href="selected.css" rel="stylesheet" type="text/css" />
+  	<link rel="shortcut icon" href="../assets/favicon.ico">
+  	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  	<span><a href="/"><img id="logo" src="../assets/nwlogo.png" ></img></a></span>
+
+  </head>
+
+  <body onload="hideAll();setTimeout(function(){ bootstrap(); showAll();}, 2500);">
+    <!--Collect Resources for Firebase-->
+    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-database.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyBtrJDxY3wRXMXS3L-vG-NW87mgS0a_fjg",
+      authDomain: "student-sign-out-ef1b3.firebaseapp.com",
+      databaseURL: "https://student-sign-out-ef1b3.firebaseio.com",
+      projectId: "student-sign-out-ef1b3",
+      storageBucket: "student-sign-out-ef1b3.appspot.com",
+      messagingSenderId: "1023120418734"
+    };
+    firebase.initializeApp(config);
+    </script>
+    <script>
+    if (window.location.href  === "https://studentsignout.netlify.com/teacher/selected.html") {
+      window.history.pushState("object or string", "Title", "https://studentsignout.netlify.com/teacher/selected.html?uid=24FgH6382HHKWG928hhWjksHAzM9sjAs&857");
+    }
+    </script>
+
+    <script src="teacherscript.js"></script>
+
+    <div id="header">
+    </div>
+    <a href="teacher.html"><button class="back">&#8592; Go Back</button></a>
+    <section id="overall">
+      <br/>
+      <br/>
+
+      <div id="summary">
+      </div>
+
+      <div id="table">
+        <table>
+          <td style="width: 30%; color: white;">Date</td>
+          <td style="width: 37.5%; color: white;">Duration of Absence</td>
+          <td style="color: white;">Reason for Absence</td>
+        </table>
+      </div>
+      <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+      <center><div id="recognition">
+        Developed By <a href="https://zakariyasattar.com" target="_blank">Zakariya Sattar</a>
+      </div></center>
+    </section>
+  </body>
+</html>

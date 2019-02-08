@@ -1,0 +1,95 @@
+*{font-family: 'Ubuntu', sans-serif;}
+
+body {
+	/* background: rgb(45, 223, 169); */
+	background: #207cd8;
+  font-family: Circular;
+}
+.input {
+	width: 500px;
+  overflow: hidden;
+}
+tab1 { padding-left: 0.5em; }
+tab2 { padding-left: 8em; }
+tab3 { padding-left: 12em; }
+tab4 { padding-left: 16em; }
+tab5 { padding-left: 20em; }
+tab6 { padding-left: 24em; }
+tab7 { padding-left: 28em; }
+tab8 { padding-left: 32em; }
+tab9 { padding-left: 36em; }
+#form {
+  overflow: hidden;
+	font-size: 15px;
+	background: white;
+	border-radius: 12px;
+	padding-top: 14px;
+	padding-right: 10px;
+	padding-left: 10px;
+	padding-bottom: 14px;
+}
+#logo {
+	position: relative;
+  bottom: 30%;
+	left: 10px;
+	float: left;
+	width: 60px;
+	height: 40px;
+}
+
+#parent {
+	height: 50%;
+}
+
+.log {
+	display: inline-block;
+	position: static;
+	width: 25%;
+	background: #e9e6ef;
+	bottom: 137px;
+}
+#uniqueID {
+	border-radius: 2px;
+	border: none;
+}
+.content {
+	display: inline-block;
+	border: 1px solid black;
+	padding: 10px;
+	position: relative;
+	right: 20px;
+	background: #20d873;
+	width: 50%;
+	font-size: 20px;
+	color: #124984;
+}
+.content .warning {
+	color: white;
+}
+.title {
+  text-align: center;
+  position: relative;
+  right: 20px;
+  color: white;
+}
+.input #btn {
+	-webkit-transition: all 0.1s ease-in-out;
+  -moz-transition: all 0.1s ease-in-out;
+  -o-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+
+	background: #20d873;
+	color: black;
+	border:none;
+	border-radius: 7px;
+	width: 275px;
+	height: 25px;
+}
+.input #btn:hover {
+	-webkit-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+
+	background: #f4d122;
+}

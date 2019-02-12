@@ -12,9 +12,11 @@ firebase.auth().signInWithPopup(provider).then(function (result) {
   if (uid === "qaOIHfkRUrVlMVKxkfDukSm6k5l1" || uid === "oIe1Ej0XetZycy6rq9zFY6euz6q2"){
     document.getElementById('html').style.display = "initial";
   }
-  else{
-    console.log("hello");
+
+  else {
+    document.write("NOT AUTHORIZED");
   }
+
 
 }).catch(function (error) {
   // Handle Errors here.
@@ -24,12 +26,8 @@ firebase.auth().signInWithPopup(provider).then(function (result) {
   var email = error.email;
   // The firebase.auth.AuthCredential type that was used.
   var credential = error.credential;
-  document.write("Authentication Error");
-});
 
-firebase.auth().onAuthStateChanged(function (user){
-  if (user) {
-  }
+  console.log("Authentication Error");
 });
 
 console.clear();

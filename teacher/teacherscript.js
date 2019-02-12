@@ -14,6 +14,7 @@ firebase.auth().signInWithPopup(provider).then(function (result) {
   }
 
   else {
+    swal("NOT AUTHORIZED");
     document.write("NOT AUTHORIZED");
   }
 

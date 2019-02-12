@@ -13,7 +13,7 @@ firebase.auth().signInWithPopup(provider).then(function (result) {
     document.getElementById('html').style.display = "initial";
   }
   else{
-
+    console.log("hello");
   }
 
 }).catch(function (error) {

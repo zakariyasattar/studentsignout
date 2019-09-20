@@ -273,14 +273,20 @@ function createKey() {
 
       var square = document.createElement('a')
       square.className = "fas fa-square";
+      square.id = "square";
       square.style.color= bg_colour;
-      square.style.float = "left";
-      square.style.cursor = "pointer"
-      square.style.padding = "33px"
-      square.style.textDecoration = "none"
-      square.style.fontFamily = "font-family: 'Ubuntu', sans-serif";
 
       name = nameOfStudentWithId(classes[i][j].substring(0, classes[i][j].indexOf(":")));
+      name = name.toLowerCase();
+      var words = name.split(" ");
+      name = "";
+
+      for(var l = 0; l < words.length; l++) {
+        name += words[l][0].toUpperCase() + words[l].substring(1) + " ";
+      }
+
+      console.log(name)
+
       if(name != ""){
         square.innerHTML += " - " + name;
         square.href = "javascript:select(\""  +name +"\")";

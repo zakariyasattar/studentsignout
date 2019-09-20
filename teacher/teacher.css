@@ -8,7 +8,7 @@
 }
 body {
 	background: white;
-  font-family: Circular;
+	font-family: 'Ubuntu', sans-serif;
 	color: black;
 	margin:0;
 	padding:0
@@ -40,6 +40,13 @@ body {
 	height: 20px;
 	top: 30px;
 	float: right;
+}
+
+#square {
+	float: left;
+	cursor: pointer;
+	padding: 33px;
+	text-decoration: none;
 }
 
 /* Style the tab */

@@ -372,7 +372,6 @@ function populateDataTable() {
         sum += getTimeOut(students[k]);
       }
 
-      console.log(sum);
       if(sum / students.length > 60){
         avg.innerHTML = (sum / students.length) / 60 + " minutes";
       }
@@ -452,7 +451,6 @@ function getTotalTimeAbsentByID(id){
       if(totalTime[i][0] == name){
         totalTimeAbsent += parseInt(totalTime[i][1]);
         counter++;
-        console.log(counter);
       }
     }
     return totalTimeAbsent+":"+counter;
@@ -461,8 +459,8 @@ function getTotalTimeAbsentByID(id){
 function getIdOfName(name) {
   for(c = 0; c < classes.length; c++){
     for(n = 1; n < classes[c].length; n++){
-      if(name == classes[c][n].substring(0, classes[c][n].indexOf(":"))){
-        return parseInt(classes[c][n].substring(classes[c][n].indexOf(":") + 1));
+      if(name == classes[c][n].substring(classes[c][n].indexOf(":") + 1)){
+        return parseInt(classes[c][n].substring(0, classes[c][n].indexOf(":")));
       }
     }
   }
@@ -652,6 +650,7 @@ function getTimeOutId(id){
 
 
 function bootstrap() {
+  var targetDiv = document.getElementById('summary');
     populateHeader();
     populateTable();
 

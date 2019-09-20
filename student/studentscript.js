@@ -141,7 +141,7 @@ classes = [
 var idNums = [];
 var data = [];
 var childData = [];
-var uid = [];
+var currentlyOut = [];
 var logRef = firebase.database().ref().child("log");
 var firebaseRef = firebase.database().ref().child("ID");
 
@@ -219,22 +219,22 @@ function isValid(str) {
   var valid = false;
   for(c = 0; c < classes.length; c++){
     for(n = 1; n < classes[c].length; n++){
-      if(typeof classes[c][n] != "object"){
-        if(str == classes[c][n].substring(classes[c][n].indexOf(":") + 1)){
+      // if(typeof classes[c][n] != "object"){
+        if(str + ":" + nameOfStudentWithId(str) == classes[c][n]){
           valid = true;
         }
-      }
+      // }
     }
   }
  return (!/[~!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(str)) && valid;
 }
 
 function update() {
-  uid = [];
+  currentlyOut = [];
 
   logRef.on("value", function(snapshot) {
     snapshot.forEach(function (childSnapshot) {
-      uid.push(childSnapshot.val());
+      currentlyOut.push(childSnapshot.val());
     })
   });
 }
@@ -249,8 +249,7 @@ function submit() {
 
   //append value to db based on input
   if (isValid(nameValue) && nameValue.indexOf("`") == -1 && nameValue.length == 5 && !isNaN(nameValue) ) {
-
-    if(uid.indexOf(nameValue + "") == -1){
+    if(currentlyOut.indexOf(nameValue + "") == -1){
       logRef.push(nameValue + "");
       logRef.push(Math.random().toString(36).substring(7));
 
@@ -262,11 +261,11 @@ function submit() {
 
       update();
 
-			firebaseRef.push(nameValue + ":"  + timeStamp + ";" + reason + "?" + uid[uid.indexOf(nameValue + "") + 1]);
-      firebaseRef.push("s" + nameValue + ":" + timeStamp + ";" + reason + "?" + uid[uid.indexOf(nameValue + "") + 1]);
+			firebaseRef.push(nameValue + ":"  + timeStamp + ";" + reason + "?" + currentlyOut[currentlyOut.indexOf(nameValue + "")]);
+      firebaseRef.push("s" + nameValue + ":" + timeStamp + ";" + reason + "?" + currentlyOut[currentlyOut.indexOf(nameValue + "") + 1]);
 		}
 
-		else if(uid.indexOf(nameValue + "") != -1){
+		else if(currentlyOut.indexOf(nameValue + "") != -1){
 			var hasRunOnce = false;
 
       var date = timeStamp.substring(0, timeStamp.indexOf(","));
@@ -280,13 +279,13 @@ function submit() {
           if(typeof(childSnapshot.val()) != "object"){
     				if(nameValue == childSnapshot.val().substring(0, childSnapshot.val().indexOf(":"))){
               firebaseRef.child(childSnapshot.key).remove();
-              firebaseRef.child("signOut").push(nameValue + ":" + timeStamp + ";" + reason + "?" + uid[uid.indexOf(nameValue + "") + 1]);
+              firebaseRef.child("signOut").push(nameValue + ":" + timeStamp + ";" + reason + "?" + currentlyOut[currentlyOut.indexOf(nameValue + "") + 1]);
     				}
           }
   			})
 		});
 
-    var uidTied = uid[uid.indexOf(nameValue + "") + 1];
+    var uidTied = currentlyOut[currentlyOut.indexOf(nameValue + "") + 1];
 
     logRef.once("value", function(snapshot) {
       snapshot.forEach(function (childSnapshot) {
@@ -295,7 +294,7 @@ function submit() {
         }
       })
     });
-    uid.splice(uid.indexOf(nameValue + ""), 2);
+    currentlyOut.splice(currentlyOut.indexOf(nameValue + ""), 2);
   }
 	}
   else {
@@ -314,8 +313,8 @@ function clearThis() {
 function nameOfStudentWithId(id) {
   for(var i = 0; i < classes.length; i++){
     for(var j = 0; j < classes[i].length; j++){
-      var name = classes[i][j].substring(0, classes[i][j].indexOf(":"))
-      var id1 = classes[i][j].slice(classes[i][j].indexOf(":") + 1);
+      var name = classes[i][j].substring(classes[i][j].indexOf(":") + 1)
+      var id1 = classes[i][j].substring(0, classes[i][j].indexOf(":"));
       if(id == id1){
         return name;
       }

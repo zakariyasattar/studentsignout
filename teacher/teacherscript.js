@@ -11,13 +11,12 @@ else {
     var token = result.credential.accessToken;
     // The signed-in user info.
     var user = result.user;
-
     uid = user.uid;
-    if (uid === "qaOIHfkRUrVlMVKxkfDukSm6k5l1" || uid === "oIe1Ej0XetZycy6rq9zFY6euz6q2"){
+
+    if (uid === "qaOIHfkRUrVlMVKxkfDukSm6k5l1" || uid === "UMGPaNkEkoZP375n6xcQxQfhfH22"){
       document.getElementById('html').style.display = "initial";
       localStorage.setItem('uid', uid);
     }
-
     else {
       document.write("NOT AUTHORIZED");
     }
@@ -35,6 +34,7 @@ else {
     alert("Authentication Error");
   });
 }
+
 console.clear();
 
 classes = [

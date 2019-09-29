@@ -5,6 +5,7 @@ setInterval(function() {
 console.clear();
 classes = [
   [ 'geoext3',
+  '68742:Zakariya Sattar',
   '65893:Michelle Herrarte',
   '67536:Josemari Deniega',
   '67626:Matthew Jones',
@@ -250,11 +251,20 @@ function submit() {
   //append value to db based on input
   if (isValid(nameValue) && nameValue.indexOf("`") == -1 && nameValue.length == 5 && !isNaN(nameValue) ) {
     if(currentlyOut.indexOf(nameValue + "") == -1){
+      var randomID = Math.random().toString(36).substring(7);
+      localStorage.setItem(nameValue, randomID)
       logRef.push(nameValue + "");
-      logRef.push(Math.random().toString(36).substring(7));
+      logRef.push(randomID);
 
       var date = timeStamp.substring(0, timeStamp.indexOf(","));
       var time = timeStamp.slice(timeStamp.indexOf(",") + 1);
+
+      var totalSecs = 0;
+      totalSecs += parseInt(time.split(":")[0] * 60);
+      totalSecs += parseInt(time.split(":")[1]);
+      totalSecs += parseInt(time.split(":")[2].substring(0, time.split(":")[2].indexOf(" "))) / 60;
+
+      localStorage.setItem(randomID, totalSecs.toFixed(1));
 
     	swal("Yes!", "You have successfully signed out on " + date + " at" + time + "!", "success");
       appendStudent(nameValue);
@@ -271,7 +281,25 @@ function submit() {
       var date = timeStamp.substring(0, timeStamp.indexOf(","));
       var time = timeStamp.slice(timeStamp.indexOf(",") + 1);
 
-    	swal("Welcome Back!", "You have successfully signed back in " + date + " at" + time + "!", "success");
+      var randomID = localStorage.getItem(nameValue);
+
+      var totalSecs = 0;
+      totalSecs += parseInt(time.split(":")[0] * 60);
+      totalSecs += parseInt(time.split(":")[1]);
+      totalSecs += parseInt(time.split(":")[2].substring(0, time.split(":")[2].indexOf(" "))) / 60;
+
+      var timeOut = (totalSecs - parseInt(localStorage.getItem(randomID))) * 10;
+
+      localStorage.removeItem(nameValue);
+      localStorage.removeItem(randomID);
+
+
+      if(timeOut < 60) {
+        swal("Welcome Back!", "You have successfully signed back in " + date + " at" + time + "! You were out for " + timeOut.toFixed(1) + " seconds.", "success");
+      }
+      else {
+        swal("Welcome Back!", "You have successfully signed back in " + date + " at" + time + "! You were out for " + (totalSecs / 60).toFixed(1) + " minutes.", "success");
+      }
       removeStudents(nameValue);
 
 			firebaseRef.on("value", function(snapshot) {
